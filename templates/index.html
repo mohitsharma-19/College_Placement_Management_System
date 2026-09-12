@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Placement Management System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        nav {
+            background: #ffffff;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+            margin-left: 15px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: #2563eb;
+            border: 1px solid #2563eb;
+        }
+
+        .nav-buttons .login {
+            background: #2563eb;
+            color: white;
+        }
+
+        .hero {
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 70px 7%;
+            background: linear-gradient(135deg, #eff6ff, #ffffff);
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h1 span {
+            color: #2563eb;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .hero-card {
+            background: white;
+            width: 350px;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .hero-card h2 {
+            margin-bottom: 20px;
+        }
+
+        .stat {
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        .features {
+            padding: 60px 7%;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .feature-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            background: white;
+            width: 280px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .feature h3 {
+            margin-bottom: 12px;
+        }
+
+        .feature p {
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #111827;
+            color: white;
+        }
+
+        @media (max-width: 800px) {
+            .hero {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 38px;
+            }
+
+            .hero-card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">PlacementHub</div>
+
+        <div class="nav-buttons">
+            <a href="/register">Register</a>
+            <a href="/login" class="login">Login</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+
+        <div class="hero-text">
+            <h1>
+                Build Your <span>Career</span><br>
+                With Better Opportunities
+            </h1>
+
+            <p>
+                A centralized college placement platform that connects
+                students, recruiters and placement officers in one system.
+            </p>
+
+            <a href="#" class="btn">Explore Opportunities</a>
+        </div>
+
+        <div class="hero-card">
+            <h2>Placement Overview</h2>
+
+            <div class="stat">
+                🎓 <strong>500+</strong> Students
+            </div>
+
+            <div class="stat">
+                🏢 <strong>50+</strong> Companies
+            </div>
+
+            <div class="stat">
+                💼 <strong>120+</strong> Job Opportunities
+            </div>
+
+            <div class="stat">
+                📈 <strong>85%</strong> Placement Rate
+            </div>
+        </div>
+
+    </section>
+
+    <section class="features">
+
+        <h2>Everything You Need</h2>
+
+        <div class="feature-container">
+
+            <div class="feature">
+                <h3>🎓 Student Portal</h3>
+                <p>
+                    Create your profile, upload resume, explore jobs
+                    and track applications.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>🏢 Recruiter Portal</h3>
+                <p>
+                    Companies can create job openings and manage
+                    candidate applications.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>📊 Placement Dashboard</h3>
+                <p>
+                    Placement officers can monitor students,
+                    companies and placement statistics.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+        © 2026 College Placement Management System
+    </footer>
+
+</body>
+</html>

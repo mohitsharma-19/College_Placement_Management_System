@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Job | PlacementHub</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 240px;
+            height: 100vh;
+            background: #111827;
+            padding: 28px 18px;
+            color: white;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            padding-left: 12px;
+        }
+
+        .nav a {
+            display: block;
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 14px 16px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+        }
+
+        .nav a:hover,
+        .nav .active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .main {
+            margin-left: 240px;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            height: 75px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 35px;
+        }
+
+        .topbar h1 {
+            font-size: 24px;
+        }
+
+        .content {
+            padding: 35px;
+        }
+
+        .card {
+            max-width: 900px;
+            background: white;
+            border-radius: 14px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .card h2 {
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #2563eb;
+        }
+
+        textarea {
+            height: 130px;
+            resize: vertical;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 13px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 18px;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        @media (max-width: 800px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .main {
+                margin-left: 200px;
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            PlacementHub
+        </div>
+
+        <nav class="nav">
+
+            <a href="/recruiter/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/recruiter/company">
+                Company Profile
+            </a>
+
+            <a href="/recruiter/jobs" class="active">
+                Manage Jobs
+            </a>
+
+            <a href="#">
+                Applicants
+            </a>
+
+            <a href="#">
+                Settings
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h1>Create New Job</h1>
+
+            <span>Recruiter Portal</span>
+
+        </header>
+
+
+        <section class="content">
+
+            <div class="card">
+
+                <h2>Job Details</h2>
+
+                <p class="subtitle">
+                    Create a new job opening for students.
+                </p>
+
+
+                <form method="POST">
+
+                    <div class="form-group">
+
+                        <label>Job Title</label>
+
+                        <input
+                            type="text"
+                            name="title"
+                            placeholder="e.g. Python Developer"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Job Description</label>
+
+                        <textarea
+                            name="description"
+                            placeholder="Describe the job role and responsibilities..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="form-group">
+
+                            <label>Location</label>
+
+                            <input
+                                type="text"
+                                name="location"
+                                placeholder="e.g. Bangalore"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Salary</label>
+
+                            <input
+                                type="text"
+                                name="salary"
+                                placeholder="e.g. ₹6 - ₹8 LPA"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Eligibility</label>
+
+                        <input
+                            type="text"
+                            name="eligibility"
+                            placeholder="e.g. BCA / B.Tech, CGPA 6.5+"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Required Skills</label>
+
+                        <input
+                            type="text"
+                            name="skills_required"
+                            placeholder="e.g. Python, Flask, SQL"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Application Deadline</label>
+
+                        <input
+                            type="date"
+                            name="deadline"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button type="submit" class="btn">
+                        Create Job
+                    </button>
+
+                </form>
+
+
+                <a href="/recruiter/jobs" class="back">
+                    ← Back to Manage Jobs
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

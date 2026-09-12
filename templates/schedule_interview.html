@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Schedule Interview | PlacementHub</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5f7fb;
+    min-height: 100vh;
+    color: #111827;
+}
+
+/* Header */
+
+.header {
+    background: #ffffff;
+    padding: 20px 40px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.header h2 {
+    color: #1f2937;
+    font-size: 22px;
+}
+
+/* Main Container */
+
+.container {
+    max-width: 850px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+/* Back Button */
+
+.back {
+    display: inline-block;
+    margin-bottom: 18px;
+    text-decoration: none;
+    color: #2563eb;
+    font-size: 14px;
+}
+
+.back:hover {
+    text-decoration: underline;
+}
+
+/* Main Card */
+
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 35px;
+    border: 1px solid #eef0f4;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+}
+
+/* Title */
+
+.page-title {
+    font-size: 28px;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 28px;
+}
+
+/* Candidate */
+
+.candidate {
+    padding: 20px;
+    background: #f3f6ff;
+    border: 1px solid #dbe5ff;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.candidate-title {
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.candidate p {
+    color: #374151;
+    font-size: 15px;
+    margin: 7px 0;
+}
+
+/* Section */
+
+.section-title {
+    font-size: 17px;
+    font-weight: bold;
+    color: #111827;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Form */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #374151;
+}
+
+.required {
+    color: #dc2626;
+}
+
+/* Inputs */
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #111827;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+textarea {
+    height: 110px;
+    resize: vertical;
+}
+
+/* Help Text */
+
+.help-text {
+    margin-top: 6px;
+    color: #6b7280;
+    font-size: 12px;
+}
+
+/* Conditional Fields */
+
+.online-info,
+.offline-info {
+    display: none;
+}
+
+/* Button */
+
+.btn {
+    width: 100%;
+    margin-top: 28px;
+    padding: 14px;
+    border: none;
+    border-radius: 9px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background: #1d4ed8;
+}
+
+/* Mobile */
+
+@media (max-width: 650px) {
+
+    .header {
+        padding: 18px 20px;
+    }
+
+    .container {
+        margin-top: 20px;
+    }
+
+    .card {
+        padding: 22px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .page-title {
+        font-size: 23px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+
+<div class="header">
+    <h2>PlacementHub</h2>
+</div>
+
+
+<!-- Main -->
+
+<div class="container">
+
+    <a
+        href="/recruiter/applicant/{{ application.application_id }}"
+        class="back"
+    >
+        ← Back to Applicant
+    </a>
+
+
+    <div class="card">
+
+        <h1 class="page-title">
+            Schedule Interview
+        </h1>
+
+        <p class="subtitle">
+            Create and schedule a professional interview for the selected candidate.
+        </p>
+
+
+        <!-- Candidate Information -->
+
+        <div class="candidate">
+
+            <div class="candidate-title">
+                CANDIDATE INFORMATION
+            </div>
+
+            <p>
+                <strong>Candidate:</strong>
+                {{ application.student_name }}
+            </p>
+
+            <p>
+                <strong>Position:</strong>
+                {{ application.job_title }}
+            </p>
+
+        </div>
+
+
+        <!-- Interview Details -->
+
+        <div class="section-title">
+            Interview Details
+        </div>
+
+
+        <form method="POST">
+
+            <div class="form-grid">
+
+
+                <!-- Date -->
+
+                <div class="form-group">
+
+                    <label>
+                        Interview Date
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="date"
+                        name="interview_date"
+                        id="interview_date"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Time -->
+
+                <div class="form-group">
+
+                    <label>
+                        Interview Time
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="time"
+                        name="interview_time"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Duration -->
+
+                <div class="form-group">
+
+                    <label>
+                        Interview Duration
+                        <span class="required">*</span>
+                    </label>
+
+                    <select
+                        name="duration_minutes"
+                        required
+                    >
+
+                        <option value="30">
+                            30 Minutes
+                        </option>
+
+                        <option value="45">
+                            45 Minutes
+                        </option>
+
+                        <option value="60">
+                            1 Hour
+                        </option>
+
+                        <option value="90">
+                            1 Hour 30 Minutes
+                        </option>
+
+                        <option value="120">
+                            2 Hours
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Mode -->
+
+                <div class="form-group">
+
+                    <label>
+                        Interview Mode
+                        <span class="required">*</span>
+                    </label>
+
+                    <select
+                        name="mode"
+                        id="mode"
+                        onchange="changeInterviewMode()"
+                        required
+                    >
+
+                        <option value="">
+                            Select Mode
+                        </option>
+
+                        <option value="Online">
+                            Online
+                        </option>
+
+                        <option value="Offline">
+                            Offline
+                        </option>
+
+                        <option value="Hybrid">
+                            Hybrid
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Online Meeting Link -->
+
+                <div
+                    class="form-group full-width online-info"
+                    id="onlineInfo"
+                >
+
+                    <label>
+                        Meeting Link
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="url"
+                        name="meeting_link"
+                        id="meeting_link"
+                        placeholder="https://meet.google.com/..."
+                    >
+
+                    <div class="help-text">
+                        Enter Google Meet, Zoom, Microsoft Teams
+                        or another online meeting link.
+                    </div>
+
+                </div>
+
+
+                <!-- Offline Location -->
+
+                <div
+                    class="form-group full-width offline-info"
+                    id="offlineInfo"
+                >
+
+                    <label>
+                        Interview Location
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        name="location"
+                        id="location"
+                        placeholder="e.g. Block A, Room 204"
+                    >
+
+                    <div class="help-text">
+                        Enter the physical location of the interview.
+                    </div>
+
+                </div>
+
+
+                <!-- Notes -->
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Additional Notes
+                    </label>
+
+                    <textarea
+                        name="notes"
+                        placeholder="Add interview instructions, preparation requirements, topics or additional information..."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- Submit -->
+
+            <button
+                type="submit"
+                class="btn"
+            >
+                Schedule Interview
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* Interview Mode Handler */
+
+function changeInterviewMode() {
+
+    const mode = document.getElementById("mode").value;
+
+    const onlineInfo = document.getElementById("onlineInfo");
+    const offlineInfo = document.getElementById("offlineInfo");
+
+    const meetingLink = document.getElementById("meeting_link");
+    const location = document.getElementById("location");
+
+
+    /* Hide everything first */
+
+    onlineInfo.style.display = "none";
+    offlineInfo.style.display = "none";
+
+
+    /* Remove required */
+
+    meetingLink.required = false;
+    location.required = false;
+
+
+    /* Online */
+
+    if (mode === "Online") {
+
+        onlineInfo.style.display = "block";
+
+        meetingLink.required = true;
+
+    }
+
+
+    /* Offline */
+
+    else if (mode === "Offline") {
+
+        offlineInfo.style.display = "block";
+
+        location.required = true;
+
+    }
+
+
+    /* Hybrid */
+
+    else if (mode === "Hybrid") {
+
+        onlineInfo.style.display = "block";
+        offlineInfo.style.display = "block";
+
+        meetingLink.required = true;
+        location.required = true;
+
+    }
+
+}
+
+
+/* Prevent Past Interview Dates */
+
+const dateInput =
+    document.getElementById("interview_date");
+
+const today = new Date();
+
+const year = today.getFullYear();
+
+const month =
+    String(today.getMonth() + 1).padStart(2, "0");
+
+const day =
+    String(today.getDate()).padStart(2, "0");
+
+dateInput.min =
+    `${year}-${month}-${day}`;
+
+</script>
+
+</body>
+</html>

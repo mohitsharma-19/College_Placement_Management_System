@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reschedule Interview - PlacementHub</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        .main {
+            max-width: 850px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 14px;
+            padding: 30px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        h1 {
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        .candidate-box {
+            background: #f5f3ff;
+            border: 1px solid #ddd6fe;
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .candidate-box strong {
+            display: block;
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        .candidate-box span {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #6366f1;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .update-btn {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .back-btn {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        @media (max-width: 650px) {
+
+            .row {
+                grid-template-columns: 1fr;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <main class="main">
+
+        <div class="card">
+
+            <h1>Reschedule Interview</h1>
+
+            <p class="subtitle">
+                Update the interview schedule for the selected candidate.
+            </p>
+
+            <div class="candidate-box">
+
+                <strong>
+                    Interview ID: {{ interview.id }}
+                </strong>
+
+                <span>
+                    Current Status: {{ interview.status }}
+                </span>
+
+            </div>
+
+            <!-- IMPORTANT: POST goes directly to reschedule route -->
+
+            <form
+                method="POST"
+                action="/recruiter/interview/reschedule/{{ interview.id }}"
+            >
+
+                <div class="row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Interview Date
+                        </label>
+
+                        <input
+                            type="date"
+                            name="interview_date"
+                            value="{{ interview.interview_date }}"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>
+                            Interview Time
+                        </label>
+
+                        <input
+                            type="time"
+                            name="interview_time"
+                            value="{{ interview.interview_time }}"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Interview Duration
+                    </label>
+
+                    <select name="duration_minutes">
+
+                        <option value="30"
+                            {% if interview.duration_minutes == 30 %}selected{% endif %}>
+                            30 Minutes
+                        </option>
+
+                        <option value="45"
+                            {% if interview.duration_minutes == 45 %}selected{% endif %}>
+                            45 Minutes
+                        </option>
+
+                        <option value="60"
+                            {% if interview.duration_minutes == 60 %}selected{% endif %}>
+                            1 Hour
+                        </option>
+
+                        <option value="90"
+                            {% if interview.duration_minutes == 90 %}selected{% endif %}>
+                            1 Hour 30 Minutes
+                        </option>
+
+                        <option value="120"
+                            {% if interview.duration_minutes == 120 %}selected{% endif %}>
+                            2 Hours
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Interview Mode
+                    </label>
+
+                    <select name="mode" required>
+
+                        <option value="Online"
+                            {% if interview.mode == "Online" %}selected{% endif %}>
+                            Online
+                        </option>
+
+                        <option value="Offline"
+                            {% if interview.mode == "Offline" %}selected{% endif %}>
+                            Offline
+                        </option>
+
+                        <option value="Hybrid"
+                            {% if interview.mode == "Hybrid" %}selected{% endif %}>
+                            Hybrid
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Meeting Link
+                    </label>
+
+                    <input
+                        type="url"
+                        name="meeting_link"
+                        value="{{ interview.meeting_link or '' }}"
+                        placeholder="https://meet.google.com/..."
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        name="location"
+                        value="{{ interview.location or '' }}"
+                        placeholder="Office / Google Meet"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Additional Notes
+                    </label>
+
+                    <textarea
+                        name="notes"
+                        placeholder="Add interview instructions or notes..."
+                    >{{ interview.notes or '' }}</textarea>
+
+                </div>
+
+                <div class="buttons">
+
+                    <button
+                        type="submit"
+                        class="btn update-btn">
+                        Update Interview
+                    </button>
+
+                    <a
+                        href="/recruiter/applicant/{{ interview.application_id }}"
+                        class="btn back-btn">
+                        Cancel
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - PlacementHub</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eff6ff, #ffffff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 430px;
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.10);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 28px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #1f2937;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #374151;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: #2563eb;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #6b7280;
+        }
+
+        .login-link a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="logo">PlacementHub</div>
+
+        <p class="subtitle">College Placement Management System</p>
+
+        <h2>Create Your Account</h2>
+
+        <form method="POST" action="/register">
+
+            <label>Full Name</label>
+            <input type="text" name="name" placeholder="Enter your full name" required>
+
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="Enter your email" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Create a password" required>
+
+            <label>Account Type</label>
+            <select name="role" required>
+                <option value="">Select account type</option>
+                <option value="student">Student</option>
+                <option value="recruiter">Recruiter</option>
+            </select>
+
+            <button type="submit">Create Account</button>
+
+        </form>
+
+        <div class="login-link">
+            Already have an account?
+            <a href="/login">Login</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

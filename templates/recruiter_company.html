@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Company Profile | PlacementHub</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 240px;
+            height: 100vh;
+            background: #111827;
+            padding: 28px 18px;
+            color: white;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            padding-left: 12px;
+        }
+
+        .nav a {
+            display: block;
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 14px 16px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+        }
+
+        .nav a:hover,
+        .nav .active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .main {
+            margin-left: 240px;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            height: 75px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 35px;
+        }
+
+        .topbar h1 {
+            font-size: 24px;
+        }
+
+        .content {
+            padding: 35px;
+        }
+
+        .card {
+            max-width: 850px;
+            background: white;
+            border-radius: 14px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .card h2 {
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #2563eb;
+        }
+
+        textarea {
+            height: 140px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 13px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 18px;
+            color: #2563eb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            PlacementHub
+        </div>
+
+        <nav class="nav">
+
+            <a href="/recruiter/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/recruiter/company" class="active">
+                Company Profile
+            </a>
+
+            <a href="/recruiter/jobs">
+                Manage Jobs
+            </a>
+
+            <a href="/recruiter/applicants">
+                Applicants
+            </a>
+
+            <a href="/recruiter/dashboard">
+                Settings
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <h1>Company Profile</h1>
+
+            <span>Recruiter Portal</span>
+
+        </header>
+
+
+        <section class="content">
+
+            <div class="card">
+
+                <h2>Company Information</h2>
+
+                <p class="subtitle">
+                    Add or update your company details.
+                </p>
+
+
+                <form method="POST">
+
+                    <div class="form-group">
+
+                        <label>Company Name</label>
+
+                        <input
+                            type="text"
+                            name="company_name"
+                            value="{{ company.company_name if company else '' }}"
+                            placeholder="Enter company name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Website</label>
+
+                        <input
+                            type="text"
+                            name="website"
+                            value="{{ company.website if company else '' }}"
+                            placeholder="https://example.com"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Location</label>
+
+                        <input
+                            type="text"
+                            name="location"
+                            value="{{ company.location if company else '' }}"
+                            placeholder="e.g. Bangalore"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Company Description</label>
+
+                        <textarea
+                            name="description"
+                            placeholder="Tell students about your company..."
+                        >{{ company.description if company else '' }}</textarea>
+
+                    </div>
+
+
+                    <button type="submit" class="btn">
+                        Save Company Profile
+                    </button>
+
+                </form>
+
+
+                <a href="/recruiter/dashboard" class="back">
+                    ← Back to Dashboard
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

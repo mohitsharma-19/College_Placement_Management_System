@@ -1,0 +1,1006 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Applicant Profile - PlacementHub</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: #111827;
+            color: white;
+            padding: 25px 18px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 45px;
+            padding-left: 12px;
+        }
+
+        .logo span {
+            color: #6366f1;
+        }
+
+        .nav a {
+            display: block;
+            text-decoration: none;
+            color: #9ca3af;
+            padding: 13px 15px;
+            margin: 5px 0;
+            border-radius: 8px;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            background: #1f2937;
+            color: white;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 25px;
+            left: 18px;
+            right: 18px;
+        }
+
+        .logout a {
+            display: block;
+            text-decoration: none;
+            color: #f87171;
+            padding: 13px 15px;
+            border-radius: 8px;
+        }
+
+        .logout a:hover {
+            background: #1f2937;
+        }
+
+        /* MAIN */
+
+        .main {
+            margin-left: 250px;
+            padding: 35px 45px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .topbar h1 {
+            font-size: 28px;
+        }
+
+        .company-name {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* BACK */
+
+        .back {
+            display: inline-block;
+            text-decoration: none;
+            color: #6366f1;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        /* PROFILE HEADER */
+
+        .profile-header {
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #6366f1;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .profile-info h2 {
+            margin-bottom: 7px;
+        }
+
+        .profile-info p {
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+
+        /* STATUS */
+
+        .status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .applied {
+            background: #e0e7ff;
+            color: #4338ca;
+        }
+
+        .shortlisted {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .rejected {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .selected {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        /* GRID */
+
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+        }
+
+        .card h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        /* DETAILS */
+
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .detail label {
+            display: block;
+            color: #6b7280;
+            font-size: 12px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .detail p {
+            font-weight: 500;
+        }
+
+        /* SKILLS */
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill {
+            background: #eef2ff;
+            color: #4338ca;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        /* ABOUT */
+
+        .about {
+            color: #4b5563;
+            line-height: 1.7;
+        }
+
+        /* JOB */
+
+        .job-box {
+            background: #f9fafb;
+            padding: 18px;
+            border-radius: 10px;
+        }
+
+        .job-box p {
+            margin-top: 8px;
+            color: #6b7280;
+        }
+
+        /* INTERVIEW */
+
+        .interview-box {
+            background: #f5f3ff;
+            border: 1px solid #ddd6fe;
+            padding: 18px;
+            border-radius: 10px;
+        }
+
+        .interview-detail {
+            margin-bottom: 14px;
+        }
+
+        .interview-detail:last-child {
+            margin-bottom: 0;
+        }
+
+        .interview-detail label {
+            display: block;
+            color: #6b7280;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .interview-detail p {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .interview-status {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: #dcfce7;
+            color: #15803d;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .meeting-link {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .meeting-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ACTIONS */
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+            padding: 11px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .shortlist-btn {
+            background: #16a34a;
+            color: white;
+        }
+
+        .reject-btn {
+            background: #dc2626;
+            color: white;
+        }
+
+        .select-btn {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .schedule-btn {
+            background: #6366f1;
+            color: white;
+        }
+
+        .resume {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #6366f1;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                width: 210px;
+            }
+
+            .main {
+                margin-left: 210px;
+                padding: 25px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        .interview-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid #ddd6fe;
+}
+
+.interview-btn {
+    display: inline-block;
+    padding: 9px 14px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.reschedule-btn {
+    background: #4f46e5;
+    color: white;
+}
+
+.cancel-btn {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.complete-btn {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.interview-message {
+    color: #b91c1c;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.completed-message {
+    color: #15803d;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            Placement<span>Hub</span>
+        </div>
+
+        <nav class="nav">
+
+            <a href="/recruiter/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/recruiter/company">
+                Company Profile
+            </a>
+
+            <a href="/recruiter/jobs">
+                Manage Jobs
+            </a>
+
+            <a href="/recruiter/applicants" class="active">
+                Applicants
+            </a>
+
+            <a href="#">
+                Settings
+            </a>
+
+        </nav>
+
+        <div class="logout">
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <h1>Applicant Profile</h1>
+
+            {% if company %}
+
+            <div class="company-name">
+                {{ company.company_name }}
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <a href="/recruiter/applicants" class="back">
+            ← Back to Applicants
+        </a>
+
+
+        <!-- PROFILE HEADER -->
+
+        <div class="profile-header">
+
+            <div class="profile-left">
+
+                <div class="avatar">
+                    {{ applicant.name[0] | upper }}
+                </div>
+
+                <div class="profile-info">
+
+                    <h2>
+                        {{ applicant.name }}
+                    </h2>
+
+                    <p>
+                        {{ applicant.email }}
+                    </p>
+
+                    <p>
+                        Applied for:
+                        <strong>{{ applicant.job_title }}</strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div>
+
+                {% if applicant.status == "Applied" %}
+
+                <span class="status applied">
+                    Applied
+                </span>
+
+                {% elif applicant.status == "Shortlisted" %}
+
+                <span class="status shortlisted">
+                    Shortlisted
+                </span>
+
+                {% elif applicant.status == "Rejected" %}
+
+                <span class="status rejected">
+                    Rejected
+                </span>
+
+                {% elif applicant.status == "Selected" %}
+
+                <span class="status selected">
+                    Selected
+                </span>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <div class="grid">
+
+
+            <!-- LEFT SIDE -->
+
+            <div>
+
+
+                <!-- CANDIDATE INFORMATION -->
+
+                <div class="card">
+
+                    <h3>
+                        Candidate Information
+                    </h3>
+
+                    <div class="details">
+
+
+                        <div class="detail">
+
+                            <label>
+                                Full Name
+                            </label>
+
+                            <p>
+                                {{ applicant.name }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <label>
+                                Email
+                            </label>
+
+                            <p>
+                                {{ applicant.email }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <label>
+                                Phone
+                            </label>
+
+                            <p>
+                                {{ applicant.phone or "Not provided" }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <label>
+                                Course
+                            </label>
+
+                            <p>
+                                {{ applicant.course or "Not provided" }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <label>
+                                University
+                            </label>
+
+                            <p>
+                                {{ applicant.university or "Not provided" }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <label>
+                                Graduation Year
+                            </label>
+
+                            <p>
+                                {{ applicant.graduation_year or "Not provided" }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <label>
+                                CGPA
+                            </label>
+
+                            <p>
+                                {{ applicant.cgpa or "Not provided" }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <label>
+                                Applied On
+                            </label>
+
+                            <p>
+                                {{ applicant.applied_at.strftime('%d %b %Y') }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SKILLS -->
+
+                <div class="card">
+
+                    <h3>
+                        Skills
+                    </h3>
+
+                    <div class="skills">
+
+                        {% if applicant.skills %}
+
+                        {% for skill in applicant.skills.split(',') %}
+
+                        <span class="skill">
+                            {{ skill.strip() }}
+                        </span>
+
+                        {% endfor %}
+
+                        {% else %}
+
+                        <span>
+                            No skills provided
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- ABOUT -->
+
+                <div class="card">
+
+                    <h3>
+                        About Candidate
+                    </h3>
+
+                    <p class="about">
+                        {{ applicant.about_me or "No information provided by the candidate." }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT SIDE -->
+
+            <div>
+
+
+                <!-- JOB -->
+
+                <div class="card">
+
+                    <h3>
+                        Applied Position
+                    </h3>
+
+                    <div class="job-box">
+
+                        <strong>
+                            {{ applicant.job_title }}
+                        </strong>
+
+                        <p>
+                            {{ company.company_name }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- INTERVIEW DETAILS -->
+
+                {% if interview %}
+
+                <div class="card">
+
+                    <h3>
+                        Interview Details
+                    </h3>
+
+                    <div class="interview-box">
+
+                        <div class="interview-detail">
+
+                            <label>
+                                Interview Date
+                            </label>
+
+                            <p>
+                                {{ interview.interview_date.strftime('%d %B %Y') }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="interview-detail">
+
+                            <label>
+                                Interview Time
+                            </label>
+
+                            <p>
+                                {{ interview.formatted_time }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="interview-detail">
+
+                            <label>
+                                Interview Mode
+                            </label>
+
+                            <p>
+                                {{ interview.mode }}
+                            </p>
+
+                        </div>
+
+
+                        {% if interview.location %}
+
+                        <div class="interview-detail">
+
+                            <label>
+                                Location / Meeting Link
+                            </label>
+
+                            <p>
+                                {% if interview.location.startswith('http') %}
+
+                                <a href="{{ interview.location }}"
+                                   target="_blank"
+                                   class="meeting-link">
+                                    {{ interview.location }}
+                                </a>
+
+                                {% else %}
+
+                                {{ interview.location }}
+
+                                {% endif %}
+                            </p>
+
+                        </div>
+
+                        {% endif %}
+
+
+                        {% if interview.notes %}
+
+                        <div class="interview-detail">
+
+                            <label>
+                                Additional Notes
+                            </label>
+
+                            <p>
+                                {{ interview.notes }}
+                            </p>
+
+                        </div>
+
+                        {% endif %}
+
+
+                        <div class="interview-detail">
+
+                            <label>
+                                Interview Status
+                            </label>
+
+                            <span class="interview-status">
+                                {{ interview.status }}
+                            </span>
+
+                        </div>
+
+                        <div class="interview-actions">
+
+                            {% if interview.status == "Scheduled" %}
+                        
+                                <a href="/recruiter/interview/reschedule/{{ interview.id }}"
+                                   class="interview-btn reschedule-btn">
+                                    Reschedule
+                                </a>
+                        
+                                <a href="/recruiter/interview/cancel/{{ interview.id }}"
+                                   class="interview-btn cancel-btn"
+                                   onclick="return confirm('Are you sure you want to cancel this interview?');">
+                                    Cancel Interview
+                                </a>
+                        
+                                <a href="/recruiter/interview/complete/{{ interview.id }}"
+                                   class="interview-btn complete-btn"
+                                   onclick="return confirm('Mark this interview as completed?');">
+                                    Mark Completed
+                                </a>
+                        
+                            {% elif interview.status == "Cancelled" %}
+                        
+                                <span class="interview-message">
+                                    This interview has been cancelled.
+                                </span>
+                        
+                            {% elif interview.status == "Completed" %}
+                        
+                                <span class="interview-message completed-message">
+                                    This interview has been completed.
+                                </span>
+                        
+                            {% endif %}
+                        
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- RESUME -->
+
+                <div class="card">
+
+                    <h3>
+                        Resume
+                    </h3>
+
+                    {% if applicant.resume %}
+
+                    <p>
+                        Resume information is available.
+                    </p>
+
+                    <a href="{{ applicant.resume }}"
+                       target="_blank"
+                       class="resume">
+
+                        View Resume →
+
+                    </a>
+
+                    {% else %}
+
+                    <p>
+                        No resume provided.
+                    </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- APPLICATION ACTIONS -->
+
+                <div class="card">
+
+                    <h3>
+                        Application Action
+                    </h3>
+
+                    <div class="actions">
+
+
+                        <a href="/recruiter/application/{{ applicant.application_id }}/Shortlisted"
+                           class="btn shortlist-btn">
+
+                            Shortlist
+
+                        </a>
+
+
+                        <a href="/recruiter/application/{{ applicant.application_id }}/Rejected"
+                           class="btn reject-btn">
+
+                            Reject
+
+                        </a>
+
+
+                        <a href="/recruiter/application/{{ applicant.application_id }}/Selected"
+                           class="btn select-btn">
+
+                            Select
+
+                        </a>
+
+
+                        <a href="/recruiter/interview/schedule/{{ applicant.application_id }}"
+                           class="btn schedule-btn">
+
+                            Schedule Interview
+
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
+
